@@ -25,6 +25,10 @@ testing frameworks like Jest and React Testing Library, and best practices in so
 
 function App() {
   const [activeTab, setActiveTab] = useState('Home');
+  const [showMore, setShowMore] = useState(false);
+  const [showCertificate, setShowCertificate] = useState(false);
+  const [showCertificate2, setShowCertificate2] = useState(false);
+  const [showCertificate3, setShowCertificate3] = useState(false);
 
   const scrollToSection = (tab) => {
     setActiveTab(tab);
@@ -135,7 +139,7 @@ function App() {
                 }}>
                   {/* Card 1: Professional Background */}
                   <div style={{
-                    background: '#1c1c1e',
+                    background: '#cd2883ff',
                     color: 'white',
                     padding: '25px',
                     borderRadius: '16px',
@@ -157,7 +161,7 @@ function App() {
             
                   {/* Card 2: Education */}
                   <div style={{
-                    background: '#1c1c1e',
+                    background: '#ad721fff',
                     color: 'white',
                     padding: '25px',
                     borderRadius: '16px',
@@ -412,29 +416,61 @@ function App() {
                     padding: '25px',
                     borderRadius: '12px',
                     marginBottom: '40px',
-                    position: 'relative',
+      position: 'relative',
                     boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
                     maxWidth: '700px'
-                  }}>
-                    <div style={{
-                      position: 'absolute',
-                      left: '-43px',
-                      top: '20px',
-                      backgroundColor: '#1976d2',
-                      width: '24px',
-                      height: '24px',
-                      borderRadius: '50%',
-                      border: '3px solid white'
-                    }} />
-                    <h3 style={{ marginBottom: '8px' }}>React Project 1</h3>
-                    <div style={{ fontSize: '14px', margin: '5px 0 15px' }}>
-                      <span style={{ color: '#4fc3f7' }}>React</span> <span>Redux</span> <span>JavaScript</span> <span>+ more</span>
-                    </div>
-                    <p>
-                      Developed a dynamic React application with reusable components and state management using Redux. Focused on optimizing performance and user experience...
-                    </p>
-                    <p style={{ color: '#1e90ff', cursor: 'pointer', marginTop: '10px' }}>Show More</p>
-                  </div>
+    }}>
+      {/* Circle Indicator */}
+      <div style={{
+        position: 'absolute',
+        left: '-43px',
+        top: '20px',
+        backgroundColor: '#1976d2',
+        width: '24px',
+        height: '24px',
+        borderRadius: '50%',
+        border: '3px solid white'
+      }} />
+
+      {/* Project Title */}
+      <h3 style={{ marginBottom: '8px' }}>React Project 1: Money Tree</h3>
+
+      {/* Tech Stack */}
+      <div style={{ fontSize: '14px', margin: '5px 0 15px', color: '#b3e5fc' }}>
+        React <span>Redux</span> <span>JavaScript</span> <span>HTML/CSS</span> <span>REST API</span>
+      </div>
+
+      {/* Short Description */}
+      <p>
+        Developed a US-based loan management platform called <strong>Money Tree</strong> using React and Redux. Focused on creating reusable components and efficient state management for a seamless user experience.
+      </p>
+
+      {/* Additional Details (Show More) */}
+      {showMore && (
+        <div style={{ 
+          marginTop: '10px', 
+          fontSize: '14px', 
+          color: '#e0f7fa'
+        }}>
+          <ul style={{ paddingLeft: '20px', marginTop: '10px' }}>
+            <li>Implemented dynamic loan application forms with validation using React Hooks and Formik.</li>
+            <li>Integrated RESTful APIs to fetch and display loan data in real-time.</li>
+            <li>Designed a responsive dashboard with charts showing loan status and repayment schedules.</li>
+            <li>Optimized front-end performance using memoization and lazy loading.</li>
+            <li>Ensured accessibility and cross-browser compatibility for a wide range of users.</li>
+            <li>Implemented client-side routing using React Router for smooth navigation.</li>
+          </ul>
+        </div>
+      )}
+
+      {/* Show More / Show Less toggle */}
+      <p 
+        style={{ color: '#4fc3f7', cursor: 'pointer', marginTop: '10px', fontWeight: 'bold' }}
+        onClick={() => setShowMore(!showMore)}
+      >
+        {showMore ? 'Show Less' : 'Show More'}
+      </p>
+    </div>
             
                   {/* Project 2 */}
                   <div style={{
@@ -457,15 +493,41 @@ function App() {
                       borderRadius: '50%',
                       border: '3px solid white'
                     }} />
-                    <h3 style={{ marginBottom: '8px' }}>React Project 1</h3>
-                    <div style={{ fontSize: '14px', margin: '5px 0 15px' }}>
-                      <span style={{ color: '#4fc3f7' }}>React</span> <span>HTML5</span> <span>CSS3</span> <span>+ 2 more</span>
-                    </div>
-                    <p>
-                      Built a responsive React application with a focus on clean UI design and accessibility. Collaborated on integrating RESTful APIs and optimizing load times...
-                    </p>
-                    <p style={{ color: '#1e90ff', cursor: 'pointer', marginTop: '10px' }}>Show More</p>
-                  </div>
+                    <h3 style={{ marginBottom: '8px' }}>React Project 2: Qfund11</h3>
+
+      {/* Tech Stack */}
+      <div style={{ fontSize: '14px', margin: '5px 0 15px', color: '#b3e5fc' }}>
+        React <span>HTML5</span> <span>CSS3</span> <span>Redux</span> <span>REST API</span>
+      </div>
+
+      {/* Short Description */}
+      <p>
+        Developed a US-based loan management and financial platform called <strong>Qfund11</strong> using React and Redux. Focused on responsive design, accessibility, and fast load times.
+      </p>
+
+      {/* Additional Details (Show More) */}
+      {showMore && (
+        <div style={{ marginTop: '10px', fontSize: '14px', color: '#e0f7fa' }}>
+          <ul style={{ paddingLeft: '20px', marginTop: '10px' }}>
+            <li>Implemented dynamic loan application forms with real-time validation using React Hooks.</li>
+            <li>Integrated RESTful APIs to manage loan data, user accounts, and payment schedules.</li>
+            <li>Designed a responsive dashboard to track loan applications, approvals, and repayments.</li>
+            <li>Optimized performance using code splitting, lazy loading, and memoization.</li>
+            <li>Ensured accessibility for a wide range of users following WCAG guidelines.</li>
+            <li>Collaborated with back-end developers to implement secure authentication and data handling.</li>
+            <li>Implemented reusable components to improve development speed and maintainability.</li>
+          </ul>
+        </div>
+      )}
+
+      {/* Show More / Show Less toggle */}
+      <p
+        style={{ color: '#4fc3f7', cursor: 'pointer', marginTop: '10px', fontWeight: 'bold' }}
+        onClick={() => setShowMore(!showMore)}
+      >
+        {showMore ? 'Show Less' : 'Show More'}
+      </p>
+    </div>
                 </div>
               </div>
             ) : tab === 'Certifications' ? (
@@ -480,76 +542,318 @@ function App() {
                   position: 'relative',
                   marginLeft: '100px',
                   paddingLeft: '30px',
-                  gap: '40px'  // <-- This adds spacing between the two boxes
+                  gap: '40px'
 
                 }}>
             
                   {/* Certification 1 */}
-                  <div style={{
-                    background: '#0f172a',
-                    color: 'white',
-                    padding: '25px',
-                    borderRadius: '12px',
-                    marginBottom: '40px',
-                    position: 'relative',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
-                    maxWidth: '700px',
-                  }}>
-                    
-                    <h3 style={{ marginBottom: '8px' }}>React Certified Developer</h3>
-                    <div style={{ fontSize: '14px', margin: '5px 0 15px' }}>
-                      <span style={{ color: '#4fc3f7' }}>React</span> <span>2022</span>
-                    </div>
-                    <p>
-                      Validates skills in developing custom applications using React, including component-based architecture and state management.
-                    </p>
-                    <p style={{ color: '#1e90ff', cursor: 'pointer', marginTop: '10px' }}>View Certificate</p>
-                  </div>
-            
+                   <div style={{
+        background: '#0f172a',
+        color: 'white',
+        padding: '25px',
+        borderRadius: '12px',
+        marginBottom: '40px',
+        position: 'relative',
+        boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
+        maxWidth: '700px',
+      }}>
+        <h3 style={{ marginBottom: '8px' }}>React Certified Developer</h3>
+        <div style={{ fontSize: '14px', margin: '5px 0 15px' }}>
+          <span style={{ color: '#4fc3f7' }}>React</span> <span>2022</span>
+        </div>
+        <p>
+          Validates skills in developing custom applications using React, including component-based architecture and state management.
+        </p>
+         <div style={{ textAlign: 'center', marginTop: '20px' }}>
+    <p
+      style={{ color: '#ffd700', cursor: 'pointer', fontWeight: 'bold', margin: 0 }}
+      onClick={() => setShowCertificate(true)}
+    >
+      View Certificate
+    </p>
+  </div>
+      </div>
+
+      {/* Modal Certificate */}
+      {showCertificate && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: 'rgba(0,0,0,0.85)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 10000,
+          padding: '20px',
+        }}>
+          <div style={{
+            background: '#fff',
+            padding: '40px',
+            borderRadius: '16px',
+            maxWidth: '800px',
+            width: '100%',
+            textAlign: 'center',
+            position: 'relative',
+            border: '15px solid #ffd700', // Gold border for premium feel
+            boxShadow: '0 8px 25px rgba(0,0,0,0.6)',
+            fontFamily: 'Georgia, serif',
+          }}>
+            {/* Ribbon Top */}
+            <div style={{
+              position: 'absolute',
+              top: '-20px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '120px',
+              height: '40px',
+              backgroundColor: '#ffd700',
+              borderRadius: '10px 10px 0 0',
+              textAlign: 'center',
+              lineHeight: '40px',
+              fontWeight: 'bold',
+              color: '#0d47a1',
+              fontSize: '16px',
+              boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+            }}>
+              CERTIFICATE
+            </div>
+
+            {/* Title */}
+            <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#1976d2', marginBottom: '15px' }}>
+              Certificate of Completion
+            </h1>
+
+            {/* Subtitle */}
+            <p style={{ fontSize: '18px', marginBottom: '25px' }}>
+              This certificate is proudly presented to
+            </p>
+
+            {/* Name */}
+            <h2 style={{ fontSize: '32px', fontWeight: 'bold', color: '#0d47a1', marginBottom: '25px' }}>
+              Chekuru Kalyan
+            </h2>
+
+            {/* Description */}
+            <p style={{ fontSize: '18px', marginBottom: '40px' }}>
+              For successfully completing the <strong>React Certified Developer</strong> program, demonstrating expertise in component-based architecture, state management, and building responsive React applications.
+            </p>
+
+            {/* Signature Section */}
+            {/* Signature Section */}
+<div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '60px', padding: '0 60px' }}>
+  {/* Instructor */}
+  <div style={{ textAlign: 'center' }}>
+    {/* Simulated signature line */}
+    <div style={{ borderTop: '2px solid #1976d2', width: '220px', margin: '0 auto', marginBottom: '5px' }} />
+    <p style={{ margin: 0, fontSize: '16px', fontFamily: '"Brush Script MT", cursive', color: '#0d47a1' }}>
+      Jane Smith
+    </p>
+    <p style={{ margin: 0, fontSize: '14px', fontWeight: 'bold', fontStyle: 'normal', color: '#0d47a1' }}>
+      Instructor
+    </p>
+  </div>
+
+  {/* Date */}
+  <div style={{ textAlign: 'center' }}>
+    <div style={{ borderTop: '2px solid #1976d2', width: '220px', margin: '0 auto', marginBottom: '5px' }} />
+    <p style={{ margin: 0, fontSize: '16px', fontFamily: '"Brush Script MT", cursive', color: '#0d47a1' }}>
+      Jan 1, 2022
+    </p>
+    <p style={{ margin: 0, fontSize: '14px', fontWeight: 'bold', fontStyle: 'normal', color: '#0d47a1' }}>
+      Date
+    </p>
+  </div>
+</div>
+
+
+            {/* Close Button */}
+            <button 
+              onClick={() => setShowCertificate(false)}
+              style={{
+                marginTop: '50px',
+                padding: '12px 30px',
+                border: 'none',
+                borderRadius: '8px',
+                backgroundColor: '#1976d2',
+                color: 'white',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                fontSize: '16px'
+              }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}           
                   {/* Certification 2 */}
-                  <div style={{
-                    background: '#0f172a',
-                    color: 'white',
-                    padding: '25px',
-                    borderRadius: '12px',
-                    marginBottom: '40px',
-                    position: 'relative',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
-                    maxWidth: '700px'
-                  }}>
-              
-                    <h3 style={{ marginBottom: '8px' }}>React Certified Associate</h3>
-                    <div style={{ fontSize: '14px', margin: '5px 0 15px' }}>
-                      <span style={{ color: '#4fc3f7' }}>React</span> <span>2023</span>
-                    </div>
-                    <p>
-                      Demonstrates foundational React knowledge, including navigating the framework, understanding key concepts, and basic component support.
-                    </p>
-                    <p style={{ color: '#1e90ff', cursor: 'pointer', marginTop: '10px' }}>View Certificate</p>
-                  </div><br/><br/><br/>
+                  {/* Certification 2 Card */}
+<div style={{
+  background: '#0f172a',
+  color: 'white',
+  padding: '25px',
+  borderRadius: '12px',
+  marginBottom: '40px',
+  position: 'relative',
+  boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
+  maxWidth: '700px'
+}}>
+  <h3 style={{ marginBottom: '8px' }}>React Certified Associate</h3>
+  <div style={{ fontSize: '14px', margin: '5px 0 15px' }}>
+    <span style={{ color: '#4fc3f7' }}>React</span> <span>2023</span>
+  </div>
+  <p>
+    Demonstrates foundational React knowledge, including navigating the framework, understanding key concepts, and basic component support.
+  </p>
+  <div style={{ textAlign: 'center', marginTop: '20px' }}>
+    <p
+      style={{ color: '#ffd700', cursor: 'pointer', fontWeight: 'bold', margin: 0 }}
+      onClick={() => setShowCertificate2(true)}
+    >
+      View Certificate
+    </p>
+  </div>
+</div>
+
+{/* Modal for Certification 2 */}
+{showCertificate2 && (
+  <div style={{
+    position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+    backgroundColor: 'rgba(0,0,0,0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 10000, padding: '20px'
+  }}>
+    <div style={{
+      background: '#fff8f0', padding: '40px', borderRadius: '16px', maxWidth: '800px', width: '100%',
+      textAlign: 'center', position: 'relative', border: '15px solid #c0c0c0', // silver border
+      boxShadow: '0 8px 25px rgba(0,0,0,0.6)', fontFamily: 'Georgia, serif',
+    }}>
+      {/* Ribbon Top */}
+      <div style={{
+        position: 'absolute', top: '-25px', left: '50%', transform: 'translateX(-50%) rotate(-20deg)',
+        width: '140px', height: '40px', backgroundColor: '#c0c0c0', textAlign: 'center',
+        lineHeight: '40px', fontWeight: 'bold', color: '#0d47a1', fontSize: '16px', boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+      }}>
+        ASSOCIATE
+      </div>
+
+      <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#1976d2', marginBottom: '15px' }}>Certificate of Completion</h1>
+      <p style={{ fontSize: '18px', marginBottom: '25px' }}>This certificate is proudly presented to</p>
+      <h2 style={{ fontSize: '32px', fontWeight: 'bold', color: '#0d47a1', marginBottom: '25px' }}>Chekuru Kalyan</h2>
+      <p style={{ fontSize: '18px', marginBottom: '40px' }}>
+        For successfully completing the <strong>React Certified Associate</strong> program, demonstrating foundational knowledge in React and basic component management.
+      </p>
+
+      {/* Signature Section */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 60px', marginTop: '50px' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ borderTop: '2px solid #0d47a1', width: '220px', margin: '0 auto', marginBottom: '5px' }} />
+          <p style={{ margin: 0, fontSize: '16px', fontFamily: '"Brush Script MT", cursive', color: '#0d47a1' }}>Mark Taylor</p>
+          <p style={{ margin: 0, fontSize: '14px', fontWeight: 'bold', fontStyle: 'normal', color: '#0d47a1' }}>Instructor</p>
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ borderTop: '2px solid #0d47a1', width: '220px', margin: '0 auto', marginBottom: '5px' }} />
+          <p style={{ margin: 0, fontSize: '16px', fontFamily: '"Brush Script MT", cursive', color: '#0d47a1' }}>Jun 15, 2023</p>
+          <p style={{ margin: 0, fontSize: '14px', fontWeight: 'bold', fontStyle: 'normal', color: '#0d47a1' }}>Date</p>
+        </div>
+      </div>
+
+      <button
+        onClick={() => setShowCertificate2(false)}
+        style={{
+          marginTop: '50px', padding: '12px 30px', border: 'none', borderRadius: '8px',
+          backgroundColor: '#1976d2', color: 'white', cursor: 'pointer', fontWeight: 'bold', fontSize: '16px'
+        }}
+      >Close</button>
+    </div>
+  </div>
+)}
+<br/><br/><br/>
             
                   {/* Certification 3 */}
-                  <div style={{
-                    background: '#0f172a',
-                    color: 'white',
-                    padding: '25px',
-                    borderRadius: '12px',
-                    marginBottom: '40px',
-                    marginRight: '40px',  // <-- Added spacing here
-                    position: 'relative',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
-                    maxWidth: '700px'
-                  }}><br/>
+                  {/* Certification 3 Card */}
+<div style={{
+  background: '#0f172a',
+  color: 'white',
+  padding: '25px',
+  borderRadius: '12px',
+  marginBottom: '40px',
+  position: 'relative',
+  boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
+  maxWidth: '700px'
+}}>
+  <h3 style={{ marginBottom: '8px' }}>React Certified AI Associate</h3>
+  <div style={{ fontSize: '14px', margin: '5px 0 15px' }}>
+    <span style={{ color: '#4fc3f7' }}>React</span> <span>2024</span>
+  </div>
+  <p>
+    Validates proficiency in AI-powered React features, including data analysis, predictive modeling, and ethical AI use.
+  </p>
+  <div style={{ textAlign: 'center', marginTop: '20px' }}>
+    <p
+      style={{ color: '#ffd700', cursor: 'pointer', fontWeight: 'bold', margin: 0 }}
+      onClick={() => setShowCertificate3(true)}
+    >
+      View Certificate
+    </p>
+  </div>
+</div>
 
-                    <h3 style={{ marginBottom: '8px' }}>React Certified AI Associate</h3>
-                    <div style={{ fontSize: '14px', margin: '5px 0 15px' }}>
-                      <span style={{ color: '#4fc3f7' }}>React</span> <span>2024</span>
-                    </div>
-                    <p>
-                      Validates proficiency in AI-powered React features, including data analysis, predictive modeling, and ethical AI use. Ideal for professionals who want to learn how to use AI to improve business operations in React applications.
-                    </p>
-                    <p style={{ color: '#1e90ff', cursor: 'pointer', marginTop: '10px' }}>View Certificate</p>
-                  </div>
+{/* Modal for Certification 3 */}
+{showCertificate3 && (
+  <div style={{
+    position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+    backgroundColor: 'rgba(0,0,0,0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 10000, padding: '20px'
+  }}>
+    <div style={{
+      background: '#f4f4f8', padding: '40px', borderRadius: '16px', maxWidth: '800px', width: '100%',
+      textAlign: 'center', position: 'relative', border: '15px solid #1976d2', // blue border
+      boxShadow: '0 8px 25px rgba(0,0,0,0.6)', fontFamily: 'Georgia, serif',
+    }}>
+      {/* Ribbon Top */}
+      <div style={{
+        position: 'absolute', top: '-25px', left: '50%', transform: 'translateX(-50%) rotate(20deg)',
+        width: '160px', height: '40px', backgroundColor: '#1976d2', textAlign: 'center',
+        lineHeight: '40px', fontWeight: 'bold', color: '#fff', fontSize: '16px', boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+      }}>
+        AI ASSOCIATE
+      </div>
+
+      <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#0d47a1', marginBottom: '15px' }}>Certificate of Completion</h1>
+      <p style={{ fontSize: '18px', marginBottom: '25px' }}>This certificate is proudly presented to</p>
+      <h2 style={{ fontSize: '32px', fontWeight: 'bold', color: '#1976d2', marginBottom: '25px' }}>Chekuru Kalyan</h2>
+      <p style={{ fontSize: '18px', marginBottom: '40px' }}>
+        For successfully completing the <strong>React Certified AI Associate</strong> program, demonstrating skills in AI-powered React development, predictive modeling, and best practices for integrating AI responsibly.
+      </p>
+
+      {/* Signature Section */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 60px', marginTop: '50px' }}>
+        {/* Instructor */}
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ borderTop: '2px solid #1976d2', width: '220px', margin: '0 auto', marginBottom: '5px' }} />
+          <p style={{ margin: 0, fontSize: '16px', fontFamily: '"Brush Script MT", cursive', color: '#1976d2' }}>Dr. Emily Wong</p>
+          <p style={{ margin: 0, fontSize: '14px', fontWeight: 'bold', fontStyle: 'normal', color: '#1976d2' }}>Instructor</p>
+        </div>
+        {/* Date */}
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ borderTop: '2px solid #1976d2', width: '220px', margin: '0 auto', marginBottom: '5px' }} />
+          <p style={{ margin: 0, fontSize: '16px', fontFamily: '"Brush Script MT", cursive', color: '#1976d2' }}>Dec 10, 2024</p>
+          <p style={{ margin: 0, fontSize: '14px', fontWeight: 'bold', fontStyle: 'normal', color: '#1976d2' }}>Date</p>
+        </div>
+      </div>
+
+      <button
+        onClick={() => setShowCertificate3(false)}
+        style={{
+          marginTop: '50px', padding: '12px 30px', border: 'none', borderRadius: '8px',
+          backgroundColor: '#1976d2', color: 'white', cursor: 'pointer', fontWeight: 'bold', fontSize: '16px'
+        }}
+      >Close</button>
+    </div>
+  </div>
+)}
+
                 </div>
                 <p style={{ textAlign: 'center', color: '#1e90ff' }}>
                   Continuously expanding my knowledge and skills through certifications and professional development.
@@ -559,7 +863,7 @@ function App() {
               <div style={{ padding: '20px 0',marginRight:"30px" }}>
                 <h2 style={{ color: '#1976d2', textAlign: 'center' }}>Get In Touch</h2>
                 <p style={{ textAlign: 'center', marginBottom: '40px', color: '#555' }}>
-                  Have a project in mind or want to discuss Salesforce solutions? I’d love to hear from you.
+                  Have a project in mind or want to discuss React based solutions? I’d love to hear from you.
                 </p>
             
                 <div style={{
@@ -567,7 +871,7 @@ function App() {
                   position: 'relative',
                   marginLeft: '200px',
                   paddingLeft: '30px',
-                  gap: '40px'  // <-- This adds spacing between the two boxes
+                  gap: '40px'
                 }}>
 
             
@@ -632,7 +936,7 @@ function App() {
                           borderRadius: '8px',
                           color: '#fff'
                         }}
-                        defaultValue="John Doe"
+                        defaultValue="Kalyan chekuru ( Your Name )"
                       />
                       <input
                         type="email"
@@ -646,7 +950,7 @@ function App() {
                           borderRadius: '8px',
                           color: '#fff'
                         }}
-                        defaultValue="john@example.com"
+                        defaultValue="kalyan@example.com ( Your Mail )"
                       />
                       <textarea
                         placeholder="Your Message"
@@ -660,7 +964,7 @@ function App() {
                           color: '#fff',
                           height: '100px'
                         }}
-                        defaultValue="I'd like to discuss a Salesforce project..."
+                        defaultValue="I'd like to discuss a React based project ...  ... ..."
                       />
                     </div>
                     <button
