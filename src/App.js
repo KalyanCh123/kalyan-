@@ -1,4 +1,9 @@
 import { useState, useEffect, useRef  } from 'react';
+// import Header from "./Header";
+// import Section from "./Section";
+// import { tabs, content } from "./Data";
+// import HomeSection from './HomeSection';
+
 import './App.css';
 const tabs = [
   'Home', 'About', 'Experience', 'Skills', 'Projects', 'Certifications', 'Contact'
@@ -34,6 +39,30 @@ function App() {
   const contactRef = useRef(null);
   const containerRef = useRef(null);
   const nameInputRef = useRef(null);
+
+  // const scrollToSection = (tab) => {
+  //   document
+  //     .getElementById(tab.toLowerCase())
+  //     ?.scrollIntoView({ behavior: "smooth" });
+  // };
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     tabs.forEach((tab) => {
+  //       const section = document.getElementById(tab.toLowerCase());
+  //       if (!section) return;
+
+  //       const top = section.getBoundingClientRect().top;
+  //       if (top >= -100 && top <= 150) {
+  //         setActiveTab(tab);
+  //       }
+  //     });
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
+
   const scrollToSection = (tab) => {
     setActiveTab(tab);
     document.getElementById(tab.toLowerCase()).scrollIntoView({ behavior: 'smooth' });
@@ -49,7 +78,7 @@ function App() {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-  const handleWhatsAppSend = () => {
+ const handleWhatsAppSend = () => {
     if (!name || !email || !message) {
       alert('Please fill all fields');
       return;
@@ -75,8 +104,8 @@ function App() {
     window.location.href = mailtoLink;
   };
   return (
-    <div>
-      <div style={{
+    <div style={{ fontFamily: 'Arial, sans-serif' }}>
+      {/* <div style={{
         position: 'sticky', top: 0, background: '#eae0e0fe', zIndex: 1000,
         padding: '20px 30px', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center'
@@ -110,11 +139,66 @@ function App() {
           ))}
         </div>
       </div>
-      <div style={{ padding: '30px', background: '#c3b7b7fe' }}>
+            <div style={{ padding: '30px', background: '#c3b7b7fe' }}> */}
+
+      {/* <Header activeTab={activeTab} onTabClick={scrollToSection} />
+
+{tabs.map((tab) => (
+      <Section
+        key={tab}
+        id={tab.toLowerCase()}
+        title={tab}
+        text={content[tab]}
+      />
+    ))}
+
+    {/* <div style={{ padding: "30px", background: "#c3b7b7fe" }}>
+      <p>© 2026 Kalyan Chekuru</p>
+    </div>  */}
+       {/* <div style={{ padding: '30px', background: '#c3b7b7fe' }}>
+          {tabs.map((tab) => ( */}
+   {/* <div key={tab} id={tab.toLowerCase()} style={{ marginBottom: '5px', paddingTop: '5px' }}>
+             {tab === 'Home' ? ( */}
+       {/* <HomeSection key={tab} text={content[tab]} /> ) */}
+    <div style={{
+        position: 'sticky', top: 0, background: '#eae0e0fe', zIndex: 1000,
+        padding: '20px 30px', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center'
+      }}>
+        <h2 style={{ fontWeight: 'bold', fontSize: '40px', color: '#1976d2' }}>Kalyan . Ch</h2>
+        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', marginRight: '100px',paddingTop: '50px' }}>
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => scrollToSection(tab)}
+              style={{
+                padding: '10px 18px',
+                background: activeTab === tab ? '#1976d2' : '#f0f0f0',
+                color: activeTab === tab ? '#fff' : '#333',
+                border: 'none',
+                borderRadius: '12px',
+                cursor: 'pointer',
+                fontWeight: '600',
+                boxShadow: activeTab === tab ? '0 4px 12px rgba(25, 118, 210, 0.5)' : '0 2px 6px rgba(0,0,0,0.1)',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== tab) e.currentTarget.style.background = '#dbeafe';
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== tab) e.currentTarget.style.background = '#f0f0f0';
+              }}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+      </div>
+            <div style={{ padding: '30px', background: '#c3b7b7fe' }}>
         {tabs.map((tab) => (
           <div key={tab} id={tab.toLowerCase()} style={{ marginBottom: '5px', paddingTop: '5px' }}>
             {tab === 'Home' ? (<>
-            <div
+              <div
               style={{
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
