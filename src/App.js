@@ -23,7 +23,8 @@ testing frameworks like Jest and React Testing Library, and best practices in so
 
 function App() {
   const [activeTab, setActiveTab] = useState('Home');
-  const [showMore, setShowMore] = useState(false);
+  const [showMore1, setShowMore1] = useState(false);
+  const [showMore2, setShowMore2] = useState(false);
   const [showCertificate, setShowCertificate] = useState(false);
   const [showCertificate2, setShowCertificate2] = useState(false);
   const [showCertificate3, setShowCertificate3] = useState(false);
@@ -80,17 +81,28 @@ function App() {
         padding: '20px 30px', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center'
       }}>
-        <h1 style={{ fontWeight: 'bold', fontSize: '20px', color: '#1976d2' }}>Kalyan . Ch</h1>
-        <div style={{ display: 'flex', gap: '25px', flexWrap: 'wrap', marginRight: '200px' }}>
+        <h2 style={{ fontWeight: 'bold', fontSize: '40px', color: '#1976d2' }}>Kalyan . Ch</h2>
+        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', marginRight: '100px',paddingTop: '50px' }}>
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => scrollToSection(tab)}
               style={{
-                padding: '8px 12px',
-                background: activeTab === tab ? '#1976d2' : '#eee',
-                color: activeTab === tab ? '#fff' : '#000',
-                border: 'none', borderRadius: '4px', cursor: 'pointer'
+                padding: '10px 18px',
+                background: activeTab === tab ? '#1976d2' : '#f0f0f0',
+                color: activeTab === tab ? '#fff' : '#333',
+                border: 'none',
+                borderRadius: '12px',
+                cursor: 'pointer',
+                fontWeight: '600',
+                boxShadow: activeTab === tab ? '0 4px 12px rgba(25, 118, 210, 0.5)' : '0 2px 6px rgba(0,0,0,0.1)',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== tab) e.currentTarget.style.background = '#dbeafe';
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== tab) e.currentTarget.style.background = '#f0f0f0';
               }}
             >
               {tab}
@@ -119,8 +131,7 @@ function App() {
                   paddingRight: '30vw !important',
                   paddingLeft: '30vw !important'
                 }}
-              >
-                Welcome to Ch . Kalyan's portfolio
+              > Welcome to Ch . Kalyan's portfolio
               </div>
 
               <style>
@@ -186,14 +197,14 @@ function App() {
                     width: '300px',
                     boxShadow: '0 4px 10px rgba(0,0,0,0.4)'
                   }}>
-                    <div style={{ fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>
+                    <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#06a2f1', marginBottom: '10px' }}>
                       <span role="img" aria-label="briefcase">💼</span> Professional Background
-                    </div>
-                    <p> Building expertise in front-end development while gaining strong skills in sales and client engagement. Experienced in developing responsive UI components, integrating REST APIs, and ensuring high performance in web applications. Also skilled in customer interaction, lead generation, and achieving sales targets across non-IT roles.</p>
+                    </h2>
+                    <p><span style={{ fontSize: '18px', fontWeight: '700', marginRight: '6px', letterSpacing: '2px' }}>***</span>Building expertise in front-end development while gaining strong skills in sales and client engagement. Experienced in developing responsive UI components, integrating REST APIs, and ensuring high performance in web applications. Also skilled in customer interaction, lead generation, and achieving sales targets across non-IT roles. <span style={{ fontSize: '18px', fontWeight: '700', marginRight: '6px', letterSpacing: '2px' }}>***</span></p>
                     <div style={{ marginTop: '5px', marginRight: '38px' }}>
-                      <p>✔️ React Developer at <strong>Virinchi</strong> (2024 – 2026 Present)</p>
-                      <p>✔️ Inside Sales Specialist at <strong>Byju's</strong> (2022 – 2023)</p>
-                      <p>✔️ Sales Associate at <strong>Mind Brink Media Pvt Ltd</strong> (2020 – 2022)</p>
+                      <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>✔️</span>React Developer at <strong>Virinchi Ltd.</strong> (2024 – 2026 Present)</p>
+                      <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>✔️</span>Inside Sales Specialist at <strong>Byju's E.tech company.</strong> (2022 – 2023)</p>
+                      <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>✔️</span>Sales Associate at <strong>Mind Brink Media Pri Ltd.</strong> (2020 – 2022)</p>
                     </div>
                   </div>
                   <div style={{
@@ -204,15 +215,19 @@ function App() {
                     width: '300px',
                     boxShadow: '0 4px 10px rgba(0,0,0,0.4)'
                   }}>
-                    <div style={{ fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}><span role="img" aria-label="graduation">🎓</span> Education</div>
-                    <p style={{ fontWeight: 'bold' }}>GIST - Geethanjali Institute of Science & Technology</p>
-                    <p style={{ fontSize: '14px', margin: '2px 0' }}>Bachelor of Technology (EEE) | 2015 – 2019 | GPA: 7.3</p>
-                    <p style={{ fontSize: '13px', marginBottom: '10px' }}>Specialized in Electrical and Electronics Engineering (EEE), gaining knowledge in circuit analysis, power systems, control systems, and problem-solving through analytical thinking.</p>
-                    <p style={{ fontWeight: 'bold' }}>Sasikanth Reddy Jr College</p>
-                    <p style={{ fontSize: '14px', margin: '2px 0' }}>Intermediate (MPC) | 2013 – 2015 | GPA: 8.3</p>
-                    <p style={{ fontWeight: 'bold' }}>New Little Flowers EM School</p>
-                    <p style={{ fontSize: '14px', margin: '2px 0' }}>10th Standard | 2012 - 2013 | GPA: 8.2</p>
-                  </div>
+                      <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#06a2f1', marginBottom: '10px' }}><span role="img" aria-label="graduation">🎓</span> Education</h2>
+                      <p style={{ fontWeight: 'bold' }}> 🎓 GIST – Geethanjali Institute of Science & Technology</p>
+                      <p style={{ fontSize: '14px', margin: '2px 0' }}><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>•</span>B . Tech ( E E E ) | 2015 – 2019 | <br /> GPA: 8.3</p>
+                      <p style={{ fontSize: '13px', marginBottom: '10px', opacity: 0.9 }}>
+                        <span style={{ fontSize: '18px', fontWeight: '700', marginRight: '6px', letterSpacing: '2px' }}>***</span>
+                        Studied core EEE subjects including Circuit Analysis, Power Systems, Control Systems,
+                        Electrical Machines, and Power Electronics, developing strong analytical and
+                        problem-solving skills. <span style={{ fontSize: '18px', fontWeight: '700', marginRight: '6px', letterSpacing: '2px' }}>***</span></p>
+                      <p style={{ fontWeight: 'bold' }}>🏫 Sasikanth Reddy Jr College &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                      <p style={{ fontSize: '14px', margin: '2px 0' }}><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>•</span>Intermediate ( MPC ) | 2013 – 2015 | <br /> GPA: 9.1</p>
+                      <p style={{ fontWeight: 'bold' }}>🏫 New Little Flowers EM High School</p>
+                      <p style={{ fontSize: '14px', margin: '2px 0' }}><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>•</span>Secondary School ( 10th ) | 2012 – 2013 |<br /> GPA: 9.2</p>
+                    </div>
                   <div style={{
                     background: '#0d47a1',
                     color: 'white',
@@ -221,16 +236,16 @@ function App() {
                     width: '300px',
                     boxShadow: '0 4px 10px rgba(0,0,0,0.4)'
                   }}>
-                    <div style={{ fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>
+                    <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#06a2f1', marginBottom: '10px' }}>
                       <span role="img" aria-label="bolt">⚡</span> Specializations
-                    </div>
-                    <p> I specialize in modern front-end development with React, focusing on building scalable, maintainable, and high-performance web applications with excellent user experiences.</p>
+                    </h2>
+                    <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '2px' }}><span style={{ fontSize: '18px', fontWeight: '700', marginRight: '3px', letterSpacing: '2px' }}>***</span></span>I specialize in modern front-end development with React, focusing on building scalable, maintainable, and high-performance web applications with excellent user experiences. <span style={{ fontSize: '18px', fontWeight: '700', marginRight: '3px', letterSpacing: '2px' }}>***</span></p>
                     <div style={{ marginTop: '10px' }}>
-                      <p>✔️ Building reusable components using React, Hooks, and Context API</p>
-                      <p>✔️ State management with Redux and integration of RESTful APIs</p>
-                      <p>✔️ Writing unit and integration tests with Jest and React Testing Library</p>
-                      <p>✔️ Developing responsive and accessible UI for cross-browser compatibility</p>
-                      <p>✔️ Optimizing performance, code quality, and user experience in web applications</p>
+                      <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>✔️</span>Building reusable components using React, Hooks, and Context API</p>
+                      <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>✔️</span>State management with Redux and integration of RESTful APIs</p>
+                      <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>✔️</span>Writing unit and integration tests with Jest and React Testing Library</p>
+                      <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>✔️</span>Developing responsive and accessible UI for cross-browser compatibility</p>
+                      <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>✔️</span>Optimizing performance, code quality, and user experience in web applications</p>
                     </div>
                   </div>
                 </div>
@@ -523,102 +538,72 @@ function App() {
                     <p style={{ fontSize: '0.9em', color: '#d0d0d0' }}>Skilled at managing tasks efficiently, meeting deadlines, and maintaining clean, readable code with proper structure and documentation.</p>
                   </div>
                 </div>
-              </div>) : tab === 'Projects' ? (
-              <div style={{ padding: '20px 0', marginRight: "30px" }}>
-                <h2 style={{ color: '#1976d2', textAlign: 'center' }}>Projects</h2>
-                <p style={{ textAlign: 'center', marginBottom: '40px', color: '#363637fe', fontWeight: 'bold' }}>A showcase of my technical projects and contributions.</p>
-                <div style={{
-                  position: 'relative',
-                  marginLeft: '300px',
-                  borderLeft: '3px solid #1976d2',
-                  paddingLeft: '30px'
-                }}>
-                  <div style={{
-                    background: '#0f172a',
-                    color: 'white',
-                    padding: '25px',
-                    borderRadius: '12px',
-                    marginBottom: '40px',
-                    position: 'relative',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
-                    maxWidth: '700px'
-                  }}>
-                    <div style={{
-                      position: 'absolute',
-                      left: '-43px',
-                      top: '20px',
-                      backgroundColor: '#1976d2',
-                      width: '24px',
-                      height: '24px',
-                      borderRadius: '50%',
-                      border: '3px solid white'
-                    }} />
-                    <h3 style={{ marginBottom: '8px' }}>React Project 1: Money Tree</h3>
-                    <div style={{ fontSize: '14px', margin: '5px 0 15px', color: '#b3e5fc' }}>
-                      React <span>Redux</span> <span>JavaScript</span> <span>HTML/CSS</span> <span>REST API</span>
-                    </div>
-                    <p> Developed a US-based loan management platform called <strong>Money Tree</strong> using React and Redux. Focused on creating reusable components and efficient state management for a seamless user experience.</p>
-                    {showMore && (
-                      <div style={{
-                        marginTop: '10px',
-                        fontSize: '14px',
-                        color: '#e0f7fa'
-                      }}>
-                        <ul style={{ paddingLeft: '20px', marginTop: '10px' }}>
-                          <li>Implemented dynamic loan application forms with validation using React Hooks and Formik.</li>
-                          <li>Integrated RESTful APIs to fetch and display loan data in real-time.</li>
-                          <li>Designed a responsive dashboard with charts showing loan status and repayment schedules.</li>
-                          <li>Optimized front-end performance using memoization and lazy loading.</li>
-                          <li>Ensured accessibility and cross-browser compatibility for a wide range of users.</li>
-                          <li>Implemented client-side routing using React Router for smooth navigation.</li>
-                        </ul>
+                    </div>) : tab === 'Projects' ? (
+                      <div className="projects-container">
+                        <h2 className="projects-title">Projects</h2>
+                        <p style={{ textAlign: 'center', marginBottom: '40px', color: '#363637fe', fontWeight: 'bold' }}> A showcase of my technical projects and contributions.</p>
+                        <div className="timeline">
+                          <div className="project-card">
+                            <div className="timeline-dot"></div>
+                            <h3>React Project 1: Money Tree</h3>
+                            <div className="tech-stack">
+                              <span>React</span>
+                              <span>Redux</span>
+                              <span>JavaScript</span>
+                              <span>HTML/CSS</span>
+                              <span>REST API</span>
+                            </div>
+                            <p>Developed a US-based loan management platform called<strong> Money Tree</strong> using React and Redux.
+                              Focused on creating reusable components and efficient state management for a seamless user experience.</p>
+                            {showMore1 && (
+                              <ul>
+                                <li>Implemented dynamic loan application forms with validation using React Hooks and Formik.</li>
+                                <li>Integrated RESTful APIs to fetch and display loan data in real-time.</li>
+                                <li>Designed a responsive dashboard with charts showing loan status and repayment schedules.</li>
+                                <li>Optimized front-end performance using memoization and lazy loading.</li>
+                                <li>Ensured accessibility and cross-browser compatibility for a wide range of users.</li>
+                                <li>Implemented client-side routing using React Router for smooth navigation.</li>
+                              </ul>
+                            )}
+                            <p
+                              className="show-more"
+                              onClick={() => setShowMore1(!showMore1)}
+                            >
+                              {showMore1 ? '▲ Show Less Details' : '▼ Show More Details'}
+                            </p>
+                          </div>
+                          <div className="project-card">
+                            <div className="timeline-dot"></div>
+                            <h3>React Project 2: Qfund11</h3>
+                            <div className="tech-stack">
+                              <span>React</span>
+                              <span>Redux</span>
+                              <span>HTML5</span>
+                              <span>CSS3</span>
+                              <span>REST API</span>
+                            </div>
+                            <p>Developed a US-based loan management and financial platform called<strong> Qfund11</strong> using React and Redux. Focused on responsive design, accessibility, and fast load times.</p>
+                            {showMore2 && (
+                              <ul>
+                                <li>Implemented dynamic loan application forms with real-time validation using React Hooks.</li>
+                                <li>Integrated RESTful APIs to manage loan data, user accounts, and payment schedules.</li>
+                                <li>Designed a responsive dashboard to track loan applications, approvals, and repayments.</li>
+                                <li>Optimized performance using code splitting, lazy loading, and memoization.</li>
+                                <li>Ensured accessibility for a wide range of users following WCAG guidelines.</li>
+                                <li>Collaborated with back-end developers to implement secure authentication and data handling.</li>
+                                <li>Implemented reusable components to improve development speed and maintainability.</li>
+                              </ul>
+                            )}
+
+                            <p
+                              className="show-more"
+                              onClick={() => setShowMore2(!showMore2)}
+                            >{showMore2 ? '▲ Show Less Details' : '▼ Show More Details'}</p>
+                          </div>
+
+                        </div>
                       </div>
-                    )}
-                    <p style={{ color: '#4fc3f7', cursor: 'pointer', marginTop: '10px', fontWeight: 'bold' }}
-                      onClick={() => setShowMore(!showMore)}
-                    >{showMore ? 'Show Less' : 'Show More'}</p>
-                  </div>
-                  <div style={{
-                    background: '#0f172a',
-                    color: 'white',
-                    padding: '25px',
-                    borderRadius: '12px',
-                    marginBottom: '40px',
-                    position: 'relative',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
-                    maxWidth: '700px'
-                  }}>
-                    <div style={{
-                      position: 'absolute',
-                      left: '-43px',
-                      top: '20px',
-                      backgroundColor: '#1976d2',
-                      width: '24px',
-                      height: '24px',
-                      borderRadius: '50%',
-                      border: '3px solid white'
-                    }} />
-                    <h3 style={{ marginBottom: '8px' }}>React Project 2: Qfund11</h3>
-                    <div style={{ fontSize: '14px', margin: '5px 0 15px', color: '#b3e5fc' }}>React <span>HTML5</span> <span>CSS3</span> <span>Redux</span> <span>REST API</span></div>
-                    <p> Developed a US-based loan management and financial platform called <strong>Qfund11</strong> using React and Redux. Focused on responsive design, accessibility, and fast load times.</p>
-                    {showMore && (
-                      <div style={{ marginTop: '10px', fontSize: '14px', color: '#e0f7fa' }}>
-                        <ul style={{ paddingLeft: '20px', marginTop: '10px' }}>
-                          <li>Implemented dynamic loan application forms with real-time validation using React Hooks.</li>
-                          <li>Integrated RESTful APIs to manage loan data, user accounts, and payment schedules.</li>
-                          <li>Designed a responsive dashboard to track loan applications, approvals, and repayments.</li>
-                          <li>Optimized performance using code splitting, lazy loading, and memoization.</li>
-                          <li>Ensured accessibility for a wide range of users following WCAG guidelines.</li>
-                          <li>Collaborated with back-end developers to implement secure authentication and data handling.</li>
-                          <li>Implemented reusable components to improve development speed and maintainability.</li>
-                        </ul>
-                      </div>
-                    )}
-                    <p style={{ color: '#4fc3f7', cursor: 'pointer', marginTop: '10px', fontWeight: 'bold' }}
-                      onClick={() => setShowMore(!showMore)}>{showMore ? 'Show Less' : 'Show More'}</p>
-                  </div>
-                </div>
-              </div> ) : tab === 'Certifications' ? (
+                    ) : tab === 'Certifications' ? (
               <div style={{ padding: '20px 0', marginRight: "30px" }}>
                 <h2 style={{ color: '#1976d2', textAlign: 'center' }}>Certifications</h2>
                 <p style={{ textAlign: 'center', marginBottom: '40px', color: '#363637fe', fontWeight: 'bold' }}>Professional credentials that validate my expertise in React and related technologies and sales.</p>
@@ -833,7 +818,7 @@ function App() {
                     </div>
                   )}
                 </div>
-                <p style={{ textAlign: 'center', color: '#e73737ff', fontWeight: 'bold' }}>* * * Continuously expanding my knowledge and skills through certifications and professional development. * * *</p>
+                <p style={{ textAlign: 'center', color: '#fa2121', fontWeight: 'bold' }}>* * * Continuously expanding my knowledge and skills through certifications and professional development. * * *</p>
               </div>) : tab === 'Contact' ? (
               <div ref={containerRef} style={{ height: '100vh', overflowY: 'auto' }}>
               <div style={{ padding: '20px 0', marginRight: "30px" }}>
@@ -858,34 +843,38 @@ function App() {
                   }}>
                     <h3 style={{ marginBottom: '8px' }}>Contact Information</h3>
                     <div style={{ fontSize: '14px', margin: '5px 0 15px' }}>
-                      <p><span style={{ color: '#4fc3f7' }}>📧</span> Email: kalyanch692@gmail.com</p>
-                      <p>
-                        <span style={{ color: '#4fc3f7' }}>👤</span>{' '}LinkedIn:{' '}
+                    <p style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ color: '#4fc3f7', fontSize: '20px' }}>📧</span><span>Email :</span>
+                    <a href="mailto:kalyanch692@gmail.com"
+                      style={{ color: '#4fc3f7', textDecoration: 'none' }}>kalyanch692@gmail.com</a></p>
+                      <p><span style={{ color: '#4fc3f7', fontSize: '20px' }}>👤</span>{' '}LinkedIn :{' '}
                         <a
                           href="https://www.linkedin.com/in/kalyan-chekuru-ba8829156"
                           target="_blank"
                           rel="noopener noreferrer"
-                          style={{ color: '#4fc3f7', textDecoration: 'none' }}>View Profile</a>
+                          style={{ color: '#4fc3f7', textDecoration: 'underline' }}> View Profile</a>
                       </p>
-                      <p><span style={{ color: '#4fc3f7' }}>🌍</span> Based In: India</p>
+                      <p><span style={{ color: '#4fc3f7',fontSize: '20px' }}>🌍</span> Based In : <span style={{ color: '#4fc3f7', fontSize: '20px' }}>India</span></p>
                     </div>
-                    <h4 style={{ marginBottom: '8px' }}>Connect With Me</h4>
-                                <div style={{ display: 'flex', gap: '12px' }}>
+                    <h4 style={{ marginBottom: '25px' }}>Connect With Me</h4>
+                                <div style={{ display: 'flex', gap: '12px'}}>
                                   <a                                                     // * LinkedIn *
                                     href="https://www.linkedin.com/in/kalyan-chekuru-ba8829156"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     title="LinkedIn"
                                     style={{
-                                      width: '36px',
-                                      height: '36px',
-                                      background: '#0A66C2',
-                                      borderRadius: '50%',
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      justifyContent: 'center',
-                                      textDecoration: 'none'
-                                    }}
+                                        width: '36px',
+                                        height: '36px',
+                                        background: '#0A66C2',
+                                        borderRadius: '50%',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        transition: 'transform 0.2s, opacity 0.2s'
+                                      }}
+                                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.5)'}
+                                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1.1)'}
                                   >
                                     <svg width="18" height="18" fill="white" viewBox="0 0 24 24">
                                       <path d="M20.45 20.45h-3.55v-5.4c0-1.29-.03-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85v5.5H9.47V9h3.41v1.56h.05c.48-.9 1.66-1.85 3.41-1.85 3.65 0 4.32 2.4 4.32 5.52v6.22zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
@@ -903,8 +892,10 @@ function App() {
                                       display: 'flex',
                                       alignItems: 'center',
                                       justifyContent: 'center',
-                                      textDecoration: 'none'
-                                    }}
+                                      transition: 'transform 0.2s, opacity 0.2s'
+                                      }}
+                                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.5)'}
+                                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1.1)'}
                                   >
                                     <svg width="18" height="18" fill="white" viewBox="0 0 24 24">
                                       <path d="M20.52 3.48A11.91 11.91 0 0 0 12.04 0C5.4 0 .02 5.38.02 12c0 2.1.55 4.16 1.6 5.98L0 24l6.2-1.62A11.93 11.93 0 0 0 12.04 24C18.66 24 24 18.62 24 12a11.9 11.9 0 0 0-3.48-8.52z" />
@@ -923,9 +914,11 @@ function App() {
                                       display: 'flex',
                                       alignItems: 'center',
                                       justifyContent: 'center',
-                                      textDecoration: 'none',
-                                      cursor: 'pointer'
-                                    }}
+                                      cursor: 'pointer',
+                                      transition: 'transform 0.2s, opacity 0.2s'
+                                      }}
+                                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.5)'}
+                                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1.1)'}
                                   >
                                     <span style={{ color: 'white', fontSize: '18px' }}>🐙</span>
                                   </a>
@@ -944,8 +937,11 @@ function App() {
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         border: 'none',
-                                        cursor: 'pointer'
+                                        cursor: 'pointer',
+                                        transition: 'transform 0.2s, opacity 0.2s'
                                       }}
+                                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.5)'}
+                                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1.1)'}
                                     >
                                       <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
                                         <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
@@ -965,12 +961,12 @@ function App() {
                     boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
                     maxWidth: '700px'
                   }}>
-                    <h3 style={{ marginBottom: '8px' }}>Send a Message</h3>
+                    <h3 style={{ marginBottom: '15px' }}>Send a Message to Me</h3>
                     <div style={{ fontSize: '14px', margin: '5px 0 15px' }}>
                     <input
                       ref={nameInputRef}
                       type="text"
-                      placeholder="kalyan . ch ( Your Name )"
+                      placeholder="Kalyan ** XYZ ** ( Your Name )"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       onFocus={e => {
@@ -983,7 +979,7 @@ function App() {
                       style={{
                         width: '100%',
                         padding: '10px',
-                        marginBottom: '10px',
+                        marginBottom: '15px',
                         background: '#1e293b',
                         border: 'none',
                         borderRadius: '8px',
@@ -992,7 +988,7 @@ function App() {
                     />
                       <input
                         type="email"
-                        placeholder="kalyanch692@gmai.com( Your Email )"
+                        placeholder="Kalyan ** XYZ ** @gmail.com ( Your Email )"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         onFocus={e => e.target.style.outline = '2px solid #4fc3f7'}
@@ -1000,7 +996,7 @@ function App() {
                         style={{
                           width: '100%',
                           padding: '10px',
-                          marginBottom: '10px',
+                          marginBottom: '15px',
                           background: '#1e293b',
                           border: 'none',
                           borderRadius: '8px',
@@ -1008,7 +1004,9 @@ function App() {
                         }}
                       />
                       <textarea
-                        placeholder="I'd like to discuss a React based project ...  ... ...( Your Message )"
+                        placeholder={`I'd like to discuss a React based project ... ... ...
+
+                ( Your Message )`} 
                         value={message}
                         onFocus={e => e.target.style.outline = '2px solid #4fc3f7'}
                         onBlur={e => e.target.style.outline = 'none'}
@@ -1035,8 +1033,11 @@ function App() {
                                       border: 'none',
                                       borderRadius: '8px',
                                       cursor: 'pointer',
-                                      width: '100%'
-                                    }}
+                                      width: '100%',
+                                      transition: 'transform 0.2s, opacity 0.2s'
+                                      }}
+                                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+                                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
                                   >
                                     Send WhatsApp Message
                                   </button>
@@ -1049,8 +1050,11 @@ function App() {
                                       border: 'none',
                                       borderRadius: '8px',
                                       cursor: 'pointer',
-                                      width: '100%'
-                                    }}
+                                      width: '100%',
+                                      transition: 'transform 0.2s, opacity 0.2s'
+                                      }}
+                                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+                                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
                                   >
                                     Send via Email
                                   </button>
