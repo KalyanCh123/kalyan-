@@ -303,11 +303,45 @@ p {
   font-weight: bold;
   color: #363637fe;
 }
-
 .profile-image {
   height: 480px;
   width: 320px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+@media (max-width: 768px) {
+  h2 {
+    font-size: 26px;
+  }
+  .home-container {
+    padding: 20px;
+  }
+  .scroll-text {
+    font-size: 20px;
+    padding: 0 10vw;
+  }
+  .home-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .home-text h1 {
+    font-size: 26px;
+  }
+  .home-text p {
+    font-size: 14px;
+  }
+  .profile-image {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+  }
+  .card {
+    width: 100%;
+  }
+  .timeline {
+    padding-left: 15px;
+  }
+  .timeline-dot {
+    left: -25px;
+  }
+}
+
 

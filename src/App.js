@@ -9,8 +9,7 @@ const tabs = [
   'Home', 'About', 'Experience', 'Skills', 'Projects', 'Certifications', 'Contact'
 ];
 const content = {
-  Home: `Kalyan Chekuru
-Experienced React Developer with a strong background in building dynamic, responsive, and high-
+  Home: `Experienced React Developer with a strong background in building dynamic, responsive, and high-
 performance web applications. Proficient in modern JavaScript (ES6+), React.js, Redux, and component-
 based architecture. Skilled in creating scalable front-end solutions with a focus on clean code, reusability,
 and optimal user experience. Adept at integrating APIs, managing state effectively, and using testing
@@ -39,6 +38,10 @@ function App() {
   const contactRef = useRef(null);
   const containerRef = useRef(null);
   const nameInputRef = useRef(null);
+  const [isNameFocused, setIsNameFocused] = useState(false);
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isMessageFocused, setIsMessageFocused] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
 
   // const scrollToSection = (tab) => {
   //   document
@@ -79,6 +82,7 @@ function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
  const handleWhatsAppSend = () => {
+    setShowErrors(true);
     if (!name || !email || !message) {
       alert('Please fill all fields');
       return;
@@ -208,14 +212,7 @@ function App() {
                 marginBottom: '30px',
               }}
             >
-              <div
-                style={{
-                  display: 'inline-block',
-                  animation: 'scroll 15s linear infinite',
-                  paddingRight: '30vw !important',
-                  paddingLeft: '30vw !important'
-                }}
-              > Welcome to Ch . Kalyan's portfolio
+              <div className='scroll-text' style={{marginTop:'40px',marginBottom:'30px'}}> Welcome to Ch . Kalyan's portfolio
               </div>
 
               <style>
@@ -227,27 +224,26 @@ function App() {
       `}
               </style>
             </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '30px' }}>
-                  <div style={{ flex: 1, minWidth: '250px' }}><h2 style={{marginLeft: '600px',paddingBottom: '40px'}}>{"Home"}</h2>
+                <div className='home-content'>
+                  <div className='home-text'>
+                    {/* <h2 style={{marginLeft: '600px',paddingBottom: '40px'}}>{"Home"}</h2>
                     {content[tab].split('\n').map((line, i) => {
                       const highlightedLine = line.replace(
                         /Kalyan Chekuru/,
                         '<h1 style="font-weight:bold; color:#1976d2; font-size:40px">Kalyan Chekuru</h1>'
                       );
-                      return (<p key={i} style={{ fontSize: '16px', color: '#363637fe', fontWeight: 'bold' }} dangerouslySetInnerHTML={{ __html: highlightedLine }}/>)})}
+                      return (<p key={i} style={{ fontSize: '16px', color: '#363637fe', fontWeight: 'bold' }} dangerouslySetInnerHTML={{ __html: highlightedLine }}/>)})} */}
+                  <h2 style={{ marginLeft: '600px', paddingBottom: '40px' }}>{"Home"}</h2>
+                  <h1>{"Kalyan Chekuru"}</h1>
+                  {content.Home.split('\n').map((line, i) => (
+                    <p key={i}>{line}{console.log("line-->", line)}</p>
+                  ))}
                   </div>
-                  <div style={{ flexShrink: 0 }}>
+                  <div style={{ flexShrink: 0,paddingRight: '115px' }}>
                     <img
                       src="/kalyan.jpeg"
                       alt="kalyan"
-                      style={{
-                        maxWidth: '100%',
-                        height: '480px',
-                        width: '320px',
-                        borderRadius: '12px',
-                        boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
-                        marginRight: '150px',
-                      }}
+                      className='profile-image'
                     />
                   </div>
                 </div>
@@ -259,8 +255,9 @@ function App() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   textAlign: 'center',
-                  paddingBottom: '50px',
-                  marginRight: '50px'
+                  paddingBottom: '60px',
+                  marginRight: '50px',
+                  marginTop:'125px'
                 }}
               >
                 <h2 style={{ color: '#1976d2', fontWeight: 'bold' }}>{tab}</h2>
@@ -334,7 +331,7 @@ function App() {
                   </div>
                 </div>
               </div>) : tab === 'Experience' ? (
-              <div style={{ padding: '20px 0', marginRight: '30px' }}>
+              <div style={{ padding: '20px 0', marginRight: '30px', marginTop: '100px' }}>
                 <h2 style={{ color: '#1976d2', textAlign: 'center' }}>{tab}</h2>
                 <p style={{ textAlign: 'center', marginBottom: '40px', color: '#363637fe', fontWeight: 'bold' }}> My journey developing technical, communication, and problem-solving skills across front-end development and sales roles.</p>
                 <div style={{
@@ -468,7 +465,7 @@ function App() {
                   </div>
                 </div>
               </div>) : tab === 'Skills' ? (
-              <div style={{ padding: '20px 0', backgroundColor: '#1a1a2e', color: '#fff', fontFamily: 'Arial, sans-serif', textAlign: 'center' }}>
+              <div style={{ padding: '20px 0', backgroundColor: '#1a1a2e', color: '#fff', fontFamily: 'Arial, sans-serif', textAlign: 'center',marginTop: '150px' }}>
                 <h2 style={{ color: '#1976d2', textAlign: 'center', fontSize: '2.5em', marginBottom: '10px' }}>Technical Skills</h2>
                 <p style={{ textAlign: 'center', marginBottom: '20px', color: '#b0b0b0', fontSize: '1em' }}>A showcase of my expertise in React development and related technologies.</p>
                 <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '1200px', margin: '0 auto', marginBottom: '40px' }}>
@@ -623,7 +620,7 @@ function App() {
                   </div>
                 </div>
                     </div>) : tab === 'Projects' ? (
-                      <div className="projects-container">
+                      <div className="projects-container" style={{marginTop: '100px'}}>
                         <h2 className="projects-title">Projects</h2>
                         <p style={{ textAlign: 'center', marginBottom: '40px', color: '#363637fe', fontWeight: 'bold' }}> A showcase of my technical projects and contributions.</p>
                         <div className="timeline">
@@ -688,7 +685,7 @@ function App() {
                         </div>
                       </div>
                     ) : tab === 'Certifications' ? (
-              <div style={{ padding: '20px 0', marginRight: "30px" }}>
+              <div style={{ padding: '20px 0', marginRight: "30px", marginTop: '100px' }}>
                 <h2 style={{ color: '#1976d2', textAlign: 'center' }}>Certifications</h2>
                 <p style={{ textAlign: 'center', marginBottom: '40px', color: '#363637fe', fontWeight: 'bold' }}>Professional credentials that validate my expertise in React and related technologies and sales.</p>
                 <div style={{
@@ -904,7 +901,7 @@ function App() {
                 </div>
                 <p style={{ textAlign: 'center', color: '#fa2121', fontWeight: 'bold' }}>* * * Continuously expanding my knowledge and skills through certifications and professional development. * * *</p>
               </div>) : tab === 'Contact' ? (
-              <div ref={containerRef} style={{ height: '100vh', overflowY: 'auto' }}>
+              <div ref={containerRef} style={{ height: '100vh', marginTop: '100px' }}>
               <div style={{ padding: '20px 0', marginRight: "30px" }}>
                 <h2 style={{ color: '#1976d2', textAlign: 'center' }}>Get In Touch</h2>
                 <p style={{ textAlign: 'center', marginBottom: '40px', color: '#363637fe', fontWeight: 'bold' }}>Have a project in mind or want to discuss React based solutions/projects or any suggestions? I’d love to hear from you.</p>
@@ -941,7 +938,7 @@ function App() {
                       <p><span style={{ color: '#4fc3f7',fontSize: '20px' }}>🌍</span> Based In : <span style={{ color: '#4fc3f7', fontSize: '20px' }}>India</span></p>
                     </div>
                     <h4 style={{ marginBottom: '25px' }}>Connect With Me</h4>
-                                <div style={{ display: 'flex', gap: '12px'}}>
+                                <div style={{ display: 'flex', gap: '20px'}}>
                                   <a                                                     // * LinkedIn *
                                     href="https://www.linkedin.com/in/kalyan-chekuru-ba8829156"
                                     target="_blank"
@@ -1015,7 +1012,7 @@ function App() {
                                       style={{
                                         width: '36px',
                                         height: '36px',
-                                        background: '#1976d2',
+                                        background: isNameFocused && name.trim() === '' ? 'red': '#1976d2',
                                         borderRadius: '50%',
                                         display: 'flex',
                                         alignItems: 'center',
@@ -1033,125 +1030,144 @@ function App() {
                                     </button>
                                 </div>
                               </div>
-                  <div 
-                    ref={contactRef}
-                  style={{
-                    background: '#0f172a',
-                    color: 'white',
-                    padding: '25px',
-                    borderRadius: '12px',
-                    marginBottom: '40px',
-                    position: 'relative',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
-                    maxWidth: '700px'
-                  }}>
-                    <h3 style={{ marginBottom: '15px' }}>Send a Message to Me</h3>
-                    <div style={{ fontSize: '14px', margin: '5px 0 15px' }}>
-                    <input
-                      ref={nameInputRef}
-                      type="text"
-                      placeholder="Kalyan ** XYZ ** ( Your Name )"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      onFocus={e => {
-                        e.target.style.outline = '2px solid #4fc3f7';
-                        e.target.style.outlineOffset = '2px';
-                      }}
-                      onBlur={e => {
-                        e.target.style.outline = 'none';
-                      }}
-                      style={{
-                        width: '100%',
-                        padding: '10px',
-                        marginBottom: '15px',
-                        background: '#1e293b',
-                        border: 'none',
-                        borderRadius: '8px',
-                        color: '#fff'
-                      }}
-                    />
-                      <input
-                        type="email"
-                        placeholder="Kalyan ** XYZ ** @gmail.com ( Your Email )"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        onFocus={e => e.target.style.outline = '2px solid #4fc3f7'}
-                        onBlur={e => e.target.style.outline = 'none'}
-                        style={{
-                          width: '100%',
-                          padding: '10px',
-                          marginBottom: '15px',
-                          background: '#1e293b',
-                          border: 'none',
-                          borderRadius: '8px',
-                          color: '#fff'
-                        }}
-                      />
-                      <textarea
-                        placeholder={`I'd like to discuss a React based project ... ... ...
-
-                ( Your Message )`} 
-                        value={message}
-                        onFocus={e => e.target.style.outline = '2px solid #4fc3f7'}
-                        onBlur={e => e.target.style.outline = 'none'}
-                        onChange={(e) => setMessage(e.target.value)}
-                        style={{
-                          width: '100%',
-                          padding: '10px',
-                          marginBottom: '10px',
-                          background: '#1e293b',
-                          border: 'none',
-                          borderRadius: '8px',
-                          color: '#fff',
-                          height: '100px'
-                        }}
-                      />
+                                <div
+                                  ref={contactRef}
+                                  style={{
+                                    background: '#0f172a',
+                                    color: 'white',
+                                    padding: '25px',
+                                    borderRadius: '12px',
+                                    marginBottom: '40px',
+                                    position: 'relative',
+                                    boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
+                                    maxWidth: '700px'
+                                  }}>
+                                  <h3 style={{ marginBottom: '15px' }}>Send a Message to Me</h3>
+                                  <div style={{ fontSize: '14px', margin: '5px 0 15px' }}>
+                                    <input
+                                      ref={nameInputRef}
+                                      type="text"
+                                      placeholder="Kalyan ** XYZ ** ( Your Name )"
+                                      value={name}
+                                      onChange={(e) => setName(e.target.value)}
+                                      onFocus={() => setIsNameFocused(true)}
+                                      onBlur={() => setIsNameFocused(false)}
+                                      style={{
+                                        width: '100%',
+                                        padding: '10px',
+                                        marginBottom: '15px',
+                                        background: '#1e293b',
+                                        borderRadius: '8px',
+                                        color: '#fff',
+                                        border: 'none',
+                                        outline:
+                                          (isNameFocused || showErrors) && name.trim() === ''
+                                            ? '2px solid #d32f2f'
+                                            : isNameFocused && name.trim() !== ''
+                                              ? '2px solid #4fc3f7'
+                                              : 'none',
+                                        outlineOffset: '2px',
+                                        transition: 'outline 0.2s ease'
+                                      }}
+                                    />
+                                    <input
+                                      type="email"
+                                      placeholder="Kalyan ** XYZ ** @gmail.com ( Your Email )"
+                                      value={email}
+                                      onChange={(e) => setEmail(e.target.value)}
+                                      onFocus={() => setIsEmailFocused(true)}
+                                      onBlur={() => setIsEmailFocused(false)}
+                                      style={{
+                                        width: '100%',
+                                        padding: '10px',
+                                        marginBottom: '15px',
+                                        background: '#1e293b',
+                                        borderRadius: '8px',
+                                        color: '#fff',
+                                        border: 'none',
+                                        outline:
+                                          (isEmailFocused || showErrors) && email.trim() === ''
+                                            ? '2px solid #d32f2f'
+                                            : isEmailFocused && email.trim() !== ''
+                                              ? '2px solid #4fc3f7'
+                                              : 'none',
+                                        outlineOffset: '2px',
+                                        transition: 'outline 0.2s ease'
+                                      }}
+                                    />
+                                    <textarea
+                                      placeholder={`I'd like to discuss a React based project ... ... ...
+                                  
+                        ( Your Message )`}
+                                      value={message}
+                                      onChange={(e) => setMessage(e.target.value)}
+                                      onFocus={() => setIsMessageFocused(true)}
+                                      onBlur={() => setIsMessageFocused(false)}
+                                      style={{
+                                        width: '100%',
+                                        padding: '10px',
+                                        marginBottom: '10px',
+                                        background: '#1e293b',
+                                        borderRadius: '8px',
+                                        color: '#fff',
+                                        border: 'none',
+                                        height: '100px',
+                                        outline:
+                                          (isMessageFocused || showErrors) && message.trim() === ''
+                                            ? '2px solid #d32f2f'
+                                            : isMessageFocused && message.trim() !== ''
+                                              ? '2px solid #4fc3f7'
+                                              : 'none',
+                                        outlineOffset: '2px',
+                                        transition: 'outline 0.2s ease'
+                                      }}
+                                    />
+                      </div>
+                      <div style={{ display: 'flex', gap: '10px' }}>
+                        <button
+                          onClick={handleWhatsAppSend}
+                          style={{
+                            background: '#25D366',
+                            color: 'white',
+                            padding: '10px 20px',
+                            border: 'none',
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            width: '100%',
+                            transition: 'transform 0.2s, opacity 0.2s'
+                          }}
+                          onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+                          onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                        >
+                          Send WhatsApp Message
+                        </button>
+                        <button
+                          onClick={handleEmailSend}
+                          style={{
+                            background: '#1976d2',
+                            color: 'white',
+                            padding: '10px 20px',
+                            border: 'none',
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            width: '100%',
+                            transition: 'transform 0.2s, opacity 0.2s'
+                          }}
+                          onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+                          onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                        >
+                          Send via Email
+                        </button>
+                      </div>
                     </div>
-                                <div style={{ display: 'flex', gap: '10px' }}>
-                                  <button
-                                    onClick={handleWhatsAppSend}
-                                    style={{
-                                      background: '#25D366',
-                                      color: 'white',
-                                      padding: '10px 20px',
-                                      border: 'none',
-                                      borderRadius: '8px',
-                                      cursor: 'pointer',
-                                      width: '100%',
-                                      transition: 'transform 0.2s, opacity 0.2s'
-                                      }}
-                                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
-                                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-                                  >
-                                    Send WhatsApp Message
-                                  </button>
-                                  <button
-                                    onClick={handleEmailSend}
-                                    style={{
-                                      background: '#1976d2',
-                                      color: 'white',
-                                      padding: '10px 20px',
-                                      border: 'none',
-                                      borderRadius: '8px',
-                                      cursor: 'pointer',
-                                      width: '100%',
-                                      transition: 'transform 0.2s, opacity 0.2s'
-                                      }}
-                                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
-                                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-                                  >
-                                    Send via Email
-                                  </button>
-                                </div>
-                              </div>
+                  </div>
                 </div>
-              </div>
-              </div>):(<><h2 style={{ color: '#1976d2' }}>{tab}</h2>
-                  {content[tab].split('\n').map((line, i) => (
-                    <p key={i} style={{ fontSize: '16px' }}>{line}</p>
-                  ))}
-                </>
-              )}
+              </div>) : (<><h2 style={{ color: '#1976d2' }}>{tab}</h2>
+                {content[tab].split('\n').map((line, i) => (
+                  <p key={i} style={{ fontSize: '16px' }}>{line}</p>
+                ))}
+              </>
+            )}
           </div>
         ))}
       </div>
