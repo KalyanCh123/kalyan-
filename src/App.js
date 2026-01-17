@@ -361,7 +361,7 @@ function App() {
                       border: '3px solid white'
                     }} />
                     <h3 style={{ marginBottom: '8px' }}>React Developer (Web/Frontend)</h3>
-                    <a href="#" style={{ color: '#4fc3f7', textDecoration: 'none' }}><strong>Virinchi</strong></a>
+                    <span style={{ color: '#4fc3f7' }}><strong>Virinchi</strong></span>
                     <p style={{ fontSize: '14px', margin: '5px 0 15px' }}>2024 – 2026 ( Present )</p>
                     <ul style={{ margin: '5px 0 15px', paddingLeft: '20px' }}>
                       <li>Developing scalable, high-performance front-end applications using React and Redux.</li>
@@ -402,7 +402,7 @@ function App() {
                       border: '3px solid white'
                     }} />
                     <h3 style={{ marginBottom: '8px' }}>Inside Sales Specialist</h3>
-                    <a href="#" style={{ color: '#4fc3f7', textDecoration: 'none' }}><strong>Byju's</strong></a>
+                    <span style={{ color: '#4fc3f7' }}><strong>Byju's</strong></span>
                     <p style={{ fontSize: '14px', margin: '5px 0 15px' }}>2022 – 2023</p>
                     <ul style={{ margin: '5px 0 15px', paddingLeft: '20px' }}>
                       <li>Managed inbound and outbound sales calls to generate leads and close enrollments.</li>
@@ -443,7 +443,7 @@ function App() {
                       border: '3px solid white'
                     }} />
                     <h3 style={{ marginBottom: '8px' }}>Sales Associate</h3>
-                    <a href="#" style={{ color: '#4fc3f7', textDecoration: 'none' }}><strong>Mind Brink Media Pvt Ltd</strong></a>
+                    <span style={{ color: '#4fc3f7' }}><strong>Mind Brink Media Pvt Ltd</strong></span>
                     <p style={{ fontSize: '14px', margin: '5px 0 15px' }}>2020 – 2022</p>
                     <ul style={{ margin: '5px 0 15px', paddingLeft: '20px' }}>
                       <li>Handled customer inquiries and provided product information to drive sales.</li>
