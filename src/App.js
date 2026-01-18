@@ -42,6 +42,8 @@ function App() {
   const [isEmailFocused, setIsEmailFocused] = useState(false);
   const [isMessageFocused, setIsMessageFocused] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [pendingSuccess, setPendingSuccess] = useState(false);
 
   // const scrollToSection = (tab) => {
   //   document
@@ -81,32 +83,90 @@ function App() {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
- const handleWhatsAppSend = () => {
+  const validateForm = () => {
     setShowErrors(true);
-    if (!name || !email || !message) {
-      alert('Please fill all fields');
-      return;
+
+    if (
+      name.trim() === '' ||
+      email.trim() === '' ||
+      message.trim() === ''
+    ) {
+      if (name.trim() === '') {
+        nameInputRef.current?.focus();
+      }
+      return false;
     }
+
+    return true;
+  };
+  const handleWhatsAppSend = () => {
+    if (!validateForm()) return;
     const whatsappMessage =
       `Hello Kalyan,%0A%0A` +
       `Name: ${name}%0A` +
       `Email: ${email}%0A` +
       `Message: ${message}`;
     const whatsappURL = `https://wa.me/917097173125?text=${whatsappMessage}`;
+    //  setShowSuccessModal(true);
+    setPendingSuccess(true);
     window.open(whatsappURL, '_blank');
+
+    //  setTimeout(() => {
+    //    window.open(whatsappURL, '_blank');
+    //  }, 600);
+    //  setName('');
+    //  setEmail('');
+    //  setMessage('');
   };
   const handleEmailSend = () => {
-    if (!name || !email || !message) {
-      alert('Please fill all fields');
-      return;
-    }
+    if (!validateForm()) return;
     const mailtoLink =
       `mailto:kalyanch692@gmail.com?subject=New Contact Message&body=` +
       `Name: ${name}%0A` +
       `Email: ${email}%0A` +
       `Message: ${message}`;
+    // setShowSuccessModal(true);
+    setPendingSuccess(true);
     window.location.href = mailtoLink;
+
+    // setTimeout(() => {
+    //   window.location.href = mailtoLink;
+    // }, 600);
+    // setName('');
+    // setEmail('');
+    // setMessage('');
   };
+  useEffect(() => {
+    if (name && email && message) {
+      setShowErrors(false);
+    }
+  }, [name, email, message]);
+  // useEffect(() => {
+  //   if (showSuccessModal) {
+  //     const timer = setTimeout(() => {
+  //       setShowSuccessModal(false);
+  //       window.scrollTo({ top: 0, behavior: 'smooth' });
+  //     }, 5000);
+
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [showSuccessModal]);
+useEffect(() => {
+  const handleVisibilityChange = () => {
+    if (document.visibilityState === 'visible' && pendingSuccess) {
+      setShowSuccessModal(true);
+      setPendingSuccess(false);
+      setName('');
+      setEmail('');
+      setMessage('');
+    }
+  };
+
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  return () =>
+    document.removeEventListener('visibilitychange', handleVisibilityChange);
+}, [pendingSuccess]);
+
   return (
     <div style={{ fontFamily: 'Arial, sans-serif' }}>
       {/* <div style={{
@@ -202,28 +262,36 @@ function App() {
         {tabs.map((tab) => (
           <div key={tab} id={tab.toLowerCase()} style={{ marginBottom: '5px', paddingTop: '5px' }}>
             {tab === 'Home' ? (<>
-              <div
-              style={{
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                fontSize: '35px',
-                color: '#06aafcfe',
-                fontWeight: 'bold',
-                marginBottom: '30px',
-              }}
-            >
-              <div className='scroll-text' style={{marginTop:'40px',marginBottom:'30px'}}> Welcome to Ch . Kalyan's portfolio
-              </div>
+              <div className="scroll-wrapper"
+                style={{
+                  overflow: 'hidden',
+                  width: '100%',
+                  background: '#c3b7b7fe',
+                  marginBottom: '60px'
+                }}
+              >
+                <div className="scroll-text">Welcome to Ch . Kalyan's portfolio
+                </div>
+                <style>
+                  {`
+                    .scroll-text {
+                      display: inline-block;
+                      white-space: nowrap;
+                      animation: scroll 12s linear infinite;
+                      animation-delay: -3s;
+                    }
 
-              <style>
-                {`
-        @keyframes scroll {
-          0% { transform: translateX(100%); }
-          100% { transform: translateX(-100%); }
-        }
-      `}
-              </style>
-            </div>
+                    @keyframes scroll {
+                      0% {
+                        transform: translateX(100vw);
+                      }
+                      100% {
+                        transform: translateX(-100%);
+                      }
+                    }
+                  `}
+                </style>
+              </div>
                 <div className='home-content'>
                   <div className='home-text'>
                     {/* <h2 style={{marginLeft: '600px',paddingBottom: '40px'}}>{"Home"}</h2>
@@ -284,7 +352,7 @@ function App() {
                     <p><span style={{ fontSize: '18px', fontWeight: '700', marginRight: '6px', letterSpacing: '2px' }}>***</span>Building expertise in front-end development while gaining strong skills in sales and client engagement. Experienced in developing responsive UI components, integrating REST APIs, and ensuring high performance in web applications. Also skilled in customer interaction, lead generation, and achieving sales targets across non-IT roles. <span style={{ fontSize: '18px', fontWeight: '700', marginRight: '6px', letterSpacing: '2px' }}>***</span></p>
                     <div style={{ marginTop: '5px', marginRight: '38px' }}>
                       <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>✔️</span>React Developer at <strong>Virinchi Ltd.</strong> (2024 – 2026 Present)</p>
-                      <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>✔️</span>Inside Sales Specialist at <strong>Byju's E.tech company.</strong> (2022 – 2023)</p>
+                      <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>✔️</span>Inside Sales Specialist at <strong>Byju's Edu.tech company.</strong> (2022 – 2023)</p>
                       <p><span style={{ fontSize: '20px', fontWeight: 'bold', marginRight: '6px' }}>✔️</span>Sales Associate at <strong>Mind Brink Media Pri Ltd.</strong> (2020 – 2022)</p>
                     </div>
                   </div>
@@ -361,7 +429,7 @@ function App() {
                       border: '3px solid white'
                     }} />
                     <h3 style={{ marginBottom: '8px' }}>React Developer (Web/Frontend)</h3>
-                    <span style={{ color: '#4fc3f7' }}><strong>Virinchi</strong></span>
+                    <span style={{ color: '#4fc3f7' }}><strong>Virinchi Ltd.</strong></span>
                     <p style={{ fontSize: '14px', margin: '5px 0 15px' }}>2024 – 2026 ( Present )</p>
                     <ul style={{ margin: '5px 0 15px', paddingLeft: '20px' }}>
                       <li>Developing scalable, high-performance front-end applications using React and Redux.</li>
@@ -402,7 +470,7 @@ function App() {
                       border: '3px solid white'
                     }} />
                     <h3 style={{ marginBottom: '8px' }}>Inside Sales Specialist</h3>
-                    <span style={{ color: '#4fc3f7' }}><strong>Byju's</strong></span>
+                    <span style={{ color: '#4fc3f7' }}><strong>Byju's Edu.tech company.</strong></span>
                     <p style={{ fontSize: '14px', margin: '5px 0 15px' }}>2022 – 2023</p>
                     <ul style={{ margin: '5px 0 15px', paddingLeft: '20px' }}>
                       <li>Managed inbound and outbound sales calls to generate leads and close enrollments.</li>
@@ -443,7 +511,7 @@ function App() {
                       border: '3px solid white'
                     }} />
                     <h3 style={{ marginBottom: '8px' }}>Sales Associate</h3>
-                    <span style={{ color: '#4fc3f7' }}><strong>Mind Brink Media Pvt Ltd</strong></span>
+                    <span style={{ color: '#4fc3f7' }}><strong>Mind Brink Media Pvt Ltd.</strong></span>
                     <p style={{ fontSize: '14px', margin: '5px 0 15px' }}>2020 – 2022</p>
                     <ul style={{ margin: '5px 0 15px', paddingLeft: '20px' }}>
                       <li>Handled customer inquiries and provided product information to drive sales.</li>
@@ -899,7 +967,7 @@ function App() {
                     </div>
                   )}
                 </div>
-                <p style={{ textAlign: 'center', color: '#fa2121', fontWeight: 'bold' }}>* * * Continuously expanding my knowledge and skills through certifications and professional development. * * *</p>
+                <p style={{ textAlign: 'center', color: '#fa2121', fontWeight: 'bold',marginTop: '50px' }}>* * * Continuously expanding my knowledge and skills through certifications and professional development. * * *</p>
               </div>) : tab === 'Contact' ? (
               <div ref={containerRef} style={{ height: '100vh', marginTop: '100px' }}>
               <div style={{ padding: '20px 0', marginRight: "30px" }}>
@@ -927,7 +995,7 @@ function App() {
                     <p style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <span style={{ color: '#4fc3f7', fontSize: '20px' }}>📧</span><span>Email :</span>
                     <a href="mailto:kalyanch692@gmail.com"
-                      style={{ color: '#4fc3f7', textDecoration: 'none' }}>kalyanch692@gmail.com</a></p>
+                      style={{ color: '#4fc3f7', textDecoration: 'underline' }}>kalyanch692@gmail.com</a></p>
                       <p><span style={{ color: '#4fc3f7', fontSize: '20px' }}>👤</span>{' '}LinkedIn :{' '}
                         <a
                           href="https://www.linkedin.com/in/kalyan-chekuru-ba8829156"
@@ -1160,6 +1228,141 @@ function App() {
                         </button>
                       </div>
                     </div>
+                    {showSuccessModal && (
+                    <div className="modal-overlay">
+                      <div
+                        className="modal-content"
+                        style={{
+                          position: 'relative',
+                          maxWidth: '520px',
+                          padding: '45px',
+                          borderRadius: '18px',
+                          boxShadow: '0 12px 35px rgba(0,0,0,0.7)',
+                          textAlign: 'center'
+                        }}
+                      >
+                        <button
+                          title="Close"
+                          onClick={() => {
+                            setShowSuccessModal(false);
+                            setShowErrors(false);
+                            setIsNameFocused(false);
+                            setIsEmailFocused(false);
+                            setIsMessageFocused(false);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                          style={{
+                            position: 'absolute',
+                            top: '16px',
+                            right: '16px',
+                            width: '36px',
+                            height: '36px',
+                            borderRadius: '50%',
+                            border: 'none',
+                            background: 'rgba(25,118,210,0.15)',
+                            color: '#fff',
+                            fontSize: '18px',
+                            fontWeight: '700',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.25s ease'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#1976d2';
+                            e.currentTarget.style.color = '#fff';
+                            e.currentTarget.style.transform = 'rotate(90deg) scale(1.1)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'rgba(25,118,210,0.15)';
+                            e.currentTarget.style.color = '#fff';
+                            e.currentTarget.style.transform = 'none';
+                          }}
+                        >
+                          ✕
+                        </button>
+                        <div
+                          style={{
+                            width: '70px',
+                            height: '70px',
+                            margin: '0 auto 20px',
+                            borderRadius: '50%',
+                            background: 'rgba(79,195,247,0.15)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            boxShadow: '0 0 20px rgba(79,195,247,0.5)',
+                            fontSize: '30px'
+                          }}
+                        >
+                          ✔
+                        </div>
+                        <h2
+                          style={{
+                            color: '#4fc3f7',
+                            marginBottom: '12px',
+                            fontSize: '26px',
+                            letterSpacing: '0.5px'
+                          }}
+                        >Thank You! 😊
+                        </h2>
+                        <p
+                          style={{
+                            lineHeight: '1.9',
+                            fontSize: '16px',
+                            color: '#e5e7eb'
+                          }}
+                        >Your message has been sent successfully.
+                          <br />
+                          <span
+                            style={{
+                              color: '#b5d2df',
+                              fontWeight: '600',
+                              textShadow: '0 0 8px rgba(79,195,247,0.6)',
+                              letterSpacing: '0.4px'
+                            }}
+                          >Kalyan
+                          </span>{' '}will get back to you shortly.
+                        </p>
+                        <button
+                          onClick={() => {
+                            setShowSuccessModal(false);
+                            setShowErrors(false);
+                            setIsNameFocused(false);
+                            setIsEmailFocused(false);
+                            setIsMessageFocused(false);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                          style={{
+                            marginTop: '30px',
+                            padding: '14px 34px',
+                            background: '#d9cbcb',
+                            color: '#1976d2',
+                            border: 'none',
+                            borderRadius: '14px',
+                            fontWeight: '600',
+                            fontSize: '15px',
+                            cursor: 'pointer',
+                            boxShadow: '0 6px 18px rgba(205, 220, 236, 0.6)',
+                            transition: 'all 0.3s ease'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'scale(1.08)';
+                            e.currentTarget.style.boxShadow =
+                              '0 10px 28px rgba(233,238,243,0.85)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'scale(1)';
+                            e.currentTarget.style.boxShadow =
+                              '0 6px 18px rgba(233,238,243,0.6)';
+                          }}
+                        >
+                          Okay
+                        </button>
+                      </div>
+                    </div>
+                  )}
                   </div>
                 </div>
               </div>) : (<><h2 style={{ color: '#1976d2' }}>{tab}</h2>

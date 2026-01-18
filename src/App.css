@@ -261,28 +261,40 @@ p {
 }
 
 .scroll-wrapper {
+  position: relative;
   overflow: hidden;
-  white-space: nowrap;
-  margin-bottom: 40px;
+  width: 100%;
 }
-
 .scroll-text {
   display: inline-block;
-  font-size: 35px;
+  white-space: nowrap;
+  font-size: 32px;
   font-weight: bold;
   color: #06aafcfe;
-  animation: scroll 15s linear infinite;
-  padding: 0 30vw;
+  padding: 20px 0;
+  animation: marquee 12s linear infinite;
+  will-change: transform;
 }
-
-@keyframes scroll {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
-
+.scroll-text:hover {
+  animation-play-state: paused;
+}
+@media (max-width: 768px) {
+  .scroll-text {
+    font-size: 18px;
+    animation-duration: 7s;
+    padding: 12px 0;
+  }
+}
 .home-content {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 30px;
 }
@@ -304,23 +316,61 @@ p {
   color: #363637fe;
 }
 .profile-image {
-  height: 480px;
   width: 320px;
+  height: 480px;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px); /* subtle premium blur */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.modal-content {
+  background: #0f172a;
+  padding: 40px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 520px;
+  min-height: 280px;
+  text-align: center;
+  color: #ffffff;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(79, 195, 247, 0.15); /* soft success glow */
+  animation: scaleIn 0.35s ease-out;
+}
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 @media (max-width: 768px) {
   h2 {
-    font-size: 26px;
+    font-size: 24px;
   }
   .home-container {
-    padding: 20px;
+    padding: 16px;
   }
   .scroll-text {
     font-size: 20px;
-    padding: 0 10vw;
   }
   .home-content {
     flex-direction: column;
+    align-items: center;
     text-align: center;
+    gap: 20px;
   }
   .home-text h1 {
     font-size: 26px;
@@ -330,7 +380,7 @@ p {
   }
   .profile-image {
     width: 100%;
-    max-width: 250px;
+    max-width: 260px;
     height: auto;
   }
   .card {
@@ -341,6 +391,27 @@ p {
   }
   .timeline-dot {
     left: -25px;
+  }
+  .modal-overlay {
+    padding: 16px;
+  }
+  .modal-content {
+    padding: 28px;
+    max-width: 100%;
+    min-height: 240px;
+    border-radius: 16px;
+  }
+  .modal-content h2 {
+    font-size: 22px;
+  }
+  .modal-content p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .modal-content button {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 15px;
   }
 }
 
